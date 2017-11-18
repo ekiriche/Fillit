@@ -3,77 +3,97 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/02 12:43:26 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/06 17:46:11 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/05 13:09:51 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/13 09:52:59 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		numlen(int n)
+static int		ft_dgtsinnum(int n)
 {
-	int		len;
-
-	len = 1;
-	while (n /= 10)
-		len++;
-	return (len);
-}
-
-static char		*minvalue(int n)
-{
-	char	*ans;
 	int		i;
 
-	n = 0;
-	i = 0;
-	ans = (char*)malloc(sizeof(*ans) * 12);
-	ans[0] = '-';
-	ans[1] = '2';
-	ans[2] = '1';
-	ans[3] = '4';
-	ans[4] = '7';
-	ans[5] = '4';
-	ans[6] = '8';
-	ans[7] = '3';
-	ans[8] = '6';
-	ans[9] = '4';
-	ans[10] = '8';
-	ans[11] = '\0';
-	return (ans);
+	i = 1;
+	while (n /= 10)
+		i++;
+	return (i);
 }
 
-static void		kek(int *nb, int *len)
+static char		*ft_less(int n, char *res)
 {
-	*nb *= -1;
-	*len += 1;
+	int		i;
+	int		len;
+
+	len = ft_dgtsinnum(n);
+	n *= -1;
+	i = len + 1;
+	while (i--)
+	{
+		res[i] = (n % 10) + '0';
+		n /= 10;
+	}
+	res[0] = '-';
+	res[len + 1] = '\0';
+	return (res);
+}
+
+static char		*ft_else(int n, char *res)
+{
+	int		i;
+	int		len;
+
+	len = ft_dgtsinnum(n);
+	i = len;
+	while (i--)
+	{
+		res[i] = (n % 10) + '0';
+		n /= 10;
+	}
+	res[len] = '\0';
+	return (res);
+}
+
+static char		*ft_kostyl(char *res)
+{
+	res[0] = '-';
+	res[1] = '2';
+	res[2] = '1';
+	res[3] = '4';
+	res[4] = '7';
+	res[5] = '4';
+	res[6] = '8';
+	res[7] = '3';
+	res[8] = '6';
+	res[9] = '4';
+	res[10] = '8';
+	res[11] = '\0';
+	return (res);
 }
 
 char			*ft_itoa(int n)
 {
 	int		len;
-	char	*ans;
-	int		nb;
+	char	*res;
 
-	len = numlen(n);
-	nb = n;
-	if (n == -2147483648)
-		return (minvalue(n));
-	if (n < 0)
-		kek(&nb, &len);
-	if (!(ans = (char*)malloc(sizeof(*ans) * len + 1)))
-		return (NULL);
-	ans[len - 1] = (nb % 10) + '0';
-	while (nb /= 10)
-		ans[--len - 1] = (nb % 10) + '0';
-	if (n < 0)
+	len = ft_dgtsinnum(n);
+	if (n >= 0)
 	{
-		ans[0] = '-';
-		ans[numlen(n) + 1] = '\0';
+		if (!(res = (char*)malloc(sizeof(char) * (len + 1))))
+			return (NULL);
 	}
 	else
-		ans[numlen(n)] = '\0';
-	return (ans);
+	{
+		if (!(res = (char*)malloc(sizeof(char) * (len + 2))))
+			return (NULL);
+	}
+	if (n == -2147483648)
+		res = ft_kostyl(res);
+	else if (n < 0)
+		res = ft_less(n, res);
+	else
+		res = ft_else(n, res);
+	return (res);
 }

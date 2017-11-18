@@ -3,46 +3,38 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strtrim.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/27 19:50:26 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/07 14:43:41 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/03 13:38:24 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/11 11:26:42 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static char	*ft_lul(void)
+char	*ft_strtrim(char const *s)
 {
-	char	*lul;
-
-	lul = (char*)malloc(sizeof(*lul) + 1);
-	lul[0] = '\0';
-	return (lul);
-}
-
-char		*ft_strtrim(char const *s)
-{
-	int		start;
-	int		end;
-	char	*ans;
+	char	*res;
+	int		s_len;
+	int		s_plen;
 	int		i;
 
 	if (!s)
 		return (NULL);
-	start = 0;
-	i = -1;
-	end = ft_strlen(s) - 1;
-	while (s[start] == ' ' || s[start] == '\n' || s[start] == '\t')
-		start++;
-	while (s[end] == ' ' || s[end] == '\n' || s[end] == '\t')
-		end--;
-	if (end == -1)
-		return (ft_lul());
-	if (!(ans = (char*)malloc(sizeof(*ans) * (end + 1 - start) + 1)))
+	s_len = ft_strlen(s) - 1;
+	s_plen = 0;
+	i = 0;
+	while ((s[s_len] == ' ' || s[s_len] == '\n' || s[s_len] == '\t') && s_len)
+		s_len--;
+	while ((s[s_plen] == ' ' || s[s_plen] == '\n' || s[s_plen] == '\t')
+			&& s[s_plen])
+		s_plen++;
+	if (s_len < s_plen)
+		s_len = s_plen;
+	if (!(res = (char*)malloc(sizeof(char) * (s_len - s_plen) + 2)))
 		return (NULL);
-	while (start + ++i <= end)
-		ans[i] = s[start + i];
-	ans[i] = '\0';
-	return (ans);
+	while (s_plen <= s_len)
+		res[i++] = s[s_plen++];
+	res[i] = '\0';
+	return (res);
 }

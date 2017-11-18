@@ -3,73 +3,72 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strsplit.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/27 20:11:11 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/07 13:34:06 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/05 09:37:07 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/10 11:29:49 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-static int		count_words(const char *s, char c)
+static int	ft_wordnum(const char *s, char c)
 {
-	int	i;
-	int	count;
+	int		i;
+	int		wnum;
 
 	i = 0;
-	count = 0;
+	wnum = 0;
 	while (s[i])
 	{
-		while (s[i] == c)
+		while (s[i] == c && s[i])
 			i++;
-		if (s[i] == '\0')
-			break ;
-		if (s[i + 1] == c || s[i + 1] == '\0')
-		{
-			count++;
-		}
+		if (s[i])
+			wnum++;
+		while (s[i] != c && s[i])
+			i++;
+	}
+	return (wnum);
+}
+
+static int	ft_symbnum(const char *s, char c)
+{
+	int		i;
+
+	i = 0;
+	while (*s != c && *s)
+	{
+		s++;
 		i++;
 	}
-	return (count);
+	return (i);
 }
 
-static int		len_word(const char *s, char c)
+char		**ft_strsplit(char const *s, char c)
 {
-	int	len;
-
-	len = 0;
-	while (*s != '\0' && *s != c)
-	{
-		len++;
-		s++;
-	}
-	return (len);
-}
-
-char			**ft_strsplit(char const *s, char c)
-{
-	char	**ans;
-	int		k;
+	int		i;
+	int		j;
+	char	**res;
 	int		len;
 
 	if (!s)
 		return (NULL);
-	if (!(ans = (char**)malloc(sizeof(*ans)
-					* count_words((const char*)s, c) + 1)))
+	i = 0;
+	len = ft_wordnum(s, c);
+	if (!(res = (char**)malloc(sizeof(char*) * len + 1)))
 		return (NULL);
-	k = 0;
-	len = count_words((const char*)s, c);
-	while (len--)
+	while (*s && i < len)
 	{
-		while (*s == c && *s != '\0')
+		j = 0;
+		while (*s == c && *s)
 			s++;
-		ans[k] = ft_strsub((const char*)s, 0, len_word((const char*)s, c));
-		if (ans[k] == NULL)
+		if (!(res[i] = (char*)malloc(sizeof(char) * ft_symbnum(s, c) + 1)))
 			return (NULL);
-		s = s + len_word(s, c);
-		k++;
+		while (*s != c && *s)
+			res[i][j++] = *s++;
+		res[i][j] = '\0';
+		i++;
 	}
-	ans[k] = NULL;
-	return (ans);
+	res[i] = NULL;
+	return (res);
 }

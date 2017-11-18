@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strncpy.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/25 13:17:54 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/01 16:21:40 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/10/25 17:11:35 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/02 11:19:43 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_strncpy(char *dst, const char *src, size_t len)
 {
-	size_t	i;
+	size_t		i;
 
 	i = 0;
 	while (i < len)

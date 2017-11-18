@@ -1,40 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_atoi.c                                          :+:      :+:    :+:   */
+/*   ft_atio.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/26 13:53:19 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/06 17:47:20 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/10/28 10:54:05 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/06 12:50:39 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-
-int			ft_atoi(const char *str)
+int		ft_atoi(const char *str)
 {
+	unsigned long int	res;
 	int					i;
-	int					is_neg;
-	unsigned long int	ans;
+	int					sign;
 
+	res = 0;
 	i = 0;
-	ans = 0;
-	is_neg = 1;
-	while (str[i] == ' ' || str[i] == '\t' || str[i] == '\n' || str[i] == '\v'
-			|| str[i] == '\f' || str[i] == '\r')
+	sign = 1;
+	while (str[i] == '\t' || str[i] == ' ' || str[i] == '\n' || str[i] == '\b'
+			|| str[i] == '\v' || str[i] == '\r' || str[i] == '\f')
 		i++;
-	if (str[i] == '-' || str[i] == '+')
+	if (str[i] == '-')
 	{
-		if (str[i] == '-')
-			is_neg = -1;
 		i++;
+		sign *= -1;
 	}
-	while (str[i] >= 48 && str[i] <= 57)
-		ans = ans * 10 + (str[i++] - 48);
-	if (ans > 9223372036854775807 && is_neg == -1)
+	if (str[i] == '+' && str[i - 1] != '-' && str[i - 1] != '+')
+		i++;
+	while (str[i] >= '0' && str[i] <= '9')
+		res = res * 10 + str[i++] - '0';
+	if (res > 9223372036854775807 && sign == -1)
 		return (0);
-	if (ans > 9223372036854775807 && is_neg == 1)
+	else if (res > 9223372036854775807 && sign == 1)
 		return (-1);
-	return (ans * is_neg);
+	return (res * sign);
 }

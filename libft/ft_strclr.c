@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_strclr.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/10/27 15:50:29 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/04 15:47:41 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/02 14:56:18 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/08 14:51:19 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,6 @@
 
 void	ft_strclr(char *s)
 {
-	int i;
-
-	i = 0;
-	if (!s)
-		return ;
-	while (s[i] != '\0' && s != NULL)
-	{
-		s[i] = '\0';
-		i++;
-	}
+	if (s)
+		ft_memset(s, '\0', ft_strlen(s));
 }
