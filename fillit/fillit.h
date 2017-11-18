@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 15:25:24 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 18:53:03 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 19:32:55 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,5 +58,6 @@ t_tetr		*new_tetr(char *tetr, char symbol);
 void		free_map(t_map *elem);
 void		free_tetr(t_tetr *elem);
 int			validation(t_map *elem, t_tetr *figure, int x, int y);
+void		insert_tetr(t_map *elem, t_tetr *figure, int x, int y);
 
 #endif

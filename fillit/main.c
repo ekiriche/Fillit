@@ -6,7 +6,7 @@
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/18 19:25:50 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 19:51:01 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,12 @@ int					main(int argc, char **argv)
 	t_map *chik;
 
 	chik = build_map(4);
-	chik->map[0] = "AA..";
-	chik->map[1] = "AA..";
-	chik->map[2] = "....";
-	chik->map[3] = "....";
-	validation(chik, xxx, 1, 2);
-
+//	chik->map[0] = "AA..";
+//	chik->map[1] = "AA..";
+//	chik->map[2] = "....";
+//	chik->map[3] = "....";
+	validation(chik, xxx, 2, 2);
+	print_map(chik->map);
 
 
 	return(0);
