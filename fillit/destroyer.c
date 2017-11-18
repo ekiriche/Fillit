@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 14:57:59 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 16:43:37 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 17:50:59 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,40 @@ t_list	*free_list(t_list **elem)
 	return (*elem);
 }
 
-void	free_map(t_map *map)
+void	free_map(t_map *elem)
 {
-	retrun ;
+	int	i;
+
+	i = 0;
+	while (elem->map[i])
+	{
+		ft_memdel((void**)&elem->map[i]);
+		i++;
+	}
+	elem->size = 0;
+	ft_memdel((void**)&elem->map);
+	ft_memdel((void**)&elem);
+}
+
+void	free_tetr(t_tetr *elem)
+{
+	int i;
+
+	i = 0;
+	while (elem->tetr[i])
+	{
+		ft_memdel((void**)&elem->tetr[i]);
+		i++;
+	}
+	ft_memdel((void**)&elem->tetr);
+	elem->height = 0;
+	elem->width = 0;
+	ft_memdel((void**)&elem);
+}
+
+void	free_point(t_point *elem)
+{
+	elem->x = 0;
+	elem->y = 0;
+	ft_memdel((void**)&elem);
 }

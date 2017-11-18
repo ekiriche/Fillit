@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 15:25:24 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 16:40:41 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 17:31:58 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,6 @@ t_map		*build_map(int size);
 void		print_map(char **tmp);
 t_list		*free_list(t_list **elem);
 t_tetr		*new_tetr(char *tetr);
+void		free_map(t_map *elem);
 
 #endif
