@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 14:57:59 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 17:50:59 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:21:19 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ void	free_tetr(t_tetr *elem)
 		i++;
 	}
 	ft_memdel((void**)&elem->tetr);
+	elem->symbol = 0;
 	elem->height = 0;
 	elem->width = 0;
 	ft_memdel((void**)&elem);

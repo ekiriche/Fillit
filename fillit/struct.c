@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 14:22:49 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 16:42:39 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 18:49:09 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ void		print_map(char **map)
 	}
 }
 
-t_tetr		*new_tetr(char *tetr)
+t_tetr		*new_tetr(char *tetr, char symbol)
 {
 	t_tetr *elem;
 	char	**ans;
@@ -80,5 +80,6 @@ t_tetr		*new_tetr(char *tetr)
 	elem->tetr = ans;
 	elem->height = height;
 	elem->width = width;
+	elem->symbol = symbol;
 	return (elem);
 }
