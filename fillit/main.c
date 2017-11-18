@@ -6,7 +6,7 @@
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/18 15:21:41 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 16:40:58 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 int					main(int argc, char **argv)
 {
-	int fd;
+/*	int fd;
 	t_list *lul;
 
 	fd = open(argv[1], O_RDONLY);
@@ -29,10 +29,16 @@ int					main(int argc, char **argv)
 	{
 		printf("%s\n", lul->content);
 		lul = lul->next;
-	}
+	} */
 /*	t_map *elem;
 
 	elem = build_map(atoi(argv[1]));
 	print_map(elem->map); */
+	t_tetr *xxx;
+
+	xxx = new_tetr("AA\nA.\nA.");
+	print_map(xxx->tetr);
+	printf("%d\n", xxx->height);
+	printf("%d\n", xxx->width);
 	return(0);
 }

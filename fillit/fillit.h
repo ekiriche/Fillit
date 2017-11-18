@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 15:25:24 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 15:22:20 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 16:40:41 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,6 @@ typedef struct		s_tetr
 	char			**tetr;
 	int				height;
 	int				width;
-	char			symbol;
 }					t_tetr;
 
 typedef struct		s_map
@@ -54,5 +53,6 @@ t_point		*new_point(int x, int y);
 t_map		*build_map(int size);
 void		print_map(char **tmp);
 t_list		*free_list(t_list **elem);
+t_tetr		*new_tetr(char *tetr);
 
 #endif

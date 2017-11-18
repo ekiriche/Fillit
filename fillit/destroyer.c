@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 14:57:59 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 15:24:08 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 16:43:37 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,4 +29,9 @@ t_list	*free_list(t_list **elem)
 	}
 	*elem = NULL;
 	return (*elem);
+}
+
+void	free_map(t_map *map)
+{
+	retrun ;
 }

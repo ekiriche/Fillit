@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 14:22:49 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 14:57:54 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 16:42:39 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,14 +62,23 @@ void		print_map(char **map)
 	}
 }
 
-t_tetr		new_tetr(char **tetr, int height, int width, char symbol)
+t_tetr		*new_tetr(char *tetr)
 {
 	t_tetr *elem;
+	char	**ans;
+	int		height;
+	int		width;
 
+	ans = ft_strsplit(tetr, '\n');
+	height = 0;
+	width = 0;
+	while (ans[height])
+		height++;
+	while (ans[0][width])
+		width++;
 	elem = ft_memalloc(sizeof(t_tetr));
-	elem->tetr = tetr;
+	elem->tetr = ans;
 	elem->height = height;
 	elem->width = width;
-	elem->symbol = symbol;
 	return (elem);
 }
