@@ -6,7 +6,7 @@
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/18 19:51:01 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 20:16:35 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,10 @@
 
 int					main(int argc, char **argv)
 {
-	/*	int fd;
+		int fd;
 		t_list *lul;
+		t_tetr	*keen;
+		char	symbol;
 
 		fd = open(argv[1], O_RDONLY);
 		lul = read_tetris(fd);
@@ -25,25 +27,29 @@ int					main(int argc, char **argv)
 		print_error();
 		return (1);
 		}
+		symbol = 'A';
 		while (lul)
 		{
-		printf("%s\n", lul->content);
-		lul = lul->next;
-		} */
-	/*	t_map *elem;
+			keen = new_tetr(lul->content, symbol++);
+			print_map(keen->tetr);
+			printf("%c\n", keen->symbol);
+			free_tetr(keen);
+			lul = lul->next;
+		}
+/*	t_map *elem;
 
 		elem = build_map(atoi(argv[1]));
 		print_map(elem->map);
 		free_map(elem);
-		print_map(elem->map); */
+		print_map(elem->map);
 	t_tetr *xxx;
 
 	xxx = new_tetr("BB\nB.\nB.", 'B');
-/*	print_map(xxx->tetr);
+	print_map(xxx->tetr);
 	printf("%d\n", xxx->height);
 	printf("%d\n", xxx->width);
 	printf("%c\n", xxx->symbol);
-	free_tetr(xxx); */
+	free_tetr(xxx);
 
 	t_map *chik;
 
@@ -55,6 +61,6 @@ int					main(int argc, char **argv)
 	validation(chik, xxx, 2, 2);
 	print_map(chik->map);
 
-
+*/
 	return(0);
 }

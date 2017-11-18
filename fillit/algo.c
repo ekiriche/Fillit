@@ -6,7 +6,7 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/18 18:10:50 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/18 19:49:39 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/18 19:58:15 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,4 +54,9 @@ void	insert_tetr(t_map *elem, t_tetr *figure, int x, int y)
 		}
 		i++;
 	}
+}
+
+void	ultimate_solver(t_map *legacy, t_list *supreme)
+{
+	return ;
 }
