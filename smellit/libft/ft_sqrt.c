@@ -1,38 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_sqrt.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/21 10:33:56 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/11 10:43:43 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/11 10:43:59 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
-
-int					main(int argc, char **argv)
+int		ft_sqrt(int nb)
 {
-	int		fd;
-	t_list	*lul;
-	t_map	*keen;
+	int i;
 
-	if (argc != 2)
+	i = 0;
+	while (i <= nb / 2 && nb < 5000)
 	{
-		write(1, "usage: fillit source_file\n", 26);
-		return (0);
+		if (i * i == nb)
+			return (i);
+		i++;
 	}
-	if (!check_back(argv[1]))
-		print_error();
-	fd = open(argv[1], O_RDONLY);
-	lul = read_tetris(fd);
-	if (lul == NULL)
-		print_error();
-	keen = ulti_ulti_solver(lul);
-	print_map(keen);
-	free_map(keen);
-	free_list(&lul);
+	while (i <= nb / 50)
+	{
+		if (i * i == nb)
+			return (i);
+		i++;
+	}
 	return (0);
 }

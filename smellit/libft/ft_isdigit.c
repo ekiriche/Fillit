@@ -1,38 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_isdigit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/21 10:33:56 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/10/28 12:21:07 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/10/28 12:54:21 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
-
-int					main(int argc, char **argv)
+int		ft_isdigit(int c)
 {
-	int		fd;
-	t_list	*lul;
-	t_map	*keen;
-
-	if (argc != 2)
-	{
-		write(1, "usage: fillit source_file\n", 26);
+	if (c < '0' || c > '9')
 		return (0);
-	}
-	if (!check_back(argv[1]))
-		print_error();
-	fd = open(argv[1], O_RDONLY);
-	lul = read_tetris(fd);
-	if (lul == NULL)
-		print_error();
-	keen = ulti_ulti_solver(lul);
-	print_map(keen);
-	free_map(keen);
-	free_list(&lul);
-	return (0);
+	return (1);
 }

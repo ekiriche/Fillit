@@ -1,38 +1,25 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strcmp.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/21 10:33:56 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/10/27 19:01:04 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/08 13:32:14 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
-
-int					main(int argc, char **argv)
+int		ft_strcmp(const char *s1, const char *s2)
 {
-	int		fd;
-	t_list	*lul;
-	t_map	*keen;
+	int		i;
 
-	if (argc != 2)
+	i = 0;
+	while (s1[i] || s2[i])
 	{
-		write(1, "usage: fillit source_file\n", 26);
-		return (0);
+		if ((s1[i] - s2[i]) != 0)
+			return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+		i++;
 	}
-	if (!check_back(argv[1]))
-		print_error();
-	fd = open(argv[1], O_RDONLY);
-	lul = read_tetris(fd);
-	if (lul == NULL)
-		print_error();
-	keen = ulti_ulti_solver(lul);
-	print_map(keen);
-	free_map(keen);
-	free_list(&lul);
 	return (0);
 }

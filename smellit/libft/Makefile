@@ -3,36 +3,40 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+         #
+#    By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2017/11/16 14:02:30 by ekiriche          #+#    #+#              #
-#    Updated: 2017/11/21 11:37:41 by ekiriche         ###   ########.fr        #
+#    Created: 2017/10/25 12:32:10 by dpolosuk          #+#    #+#              #
+#    Updated: 2017/11/10 10:32:45 by dpolosuk         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = fillit
+NAME = libft.a
 
-FLAGS = -Wall -Wextra -Werror
+SRC = $(wildcard *.c)
+INCLUDE = libft.h
+OBJECTS = $(SRC:.c=.o)
+CFLAGS = -Wall -Wextra -Werror
 
-SRC = algo.c checker.c destroyer.c main.c reader.c struct.c
-
-OBJ = $(SRC:.c=.o)
-
+.PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJ)
-	make -C ./libft/ all
-	gcc -o $(NAME) $(OBJ) -L ./libft/ -lft
+$(NAME): $(OBJECTS) $(INCLUDE)
+	@echo made
+	@ar rc $(NAME) $(OBJECTS)
+	@ranlib $(NAME)
 
-%.o: %.c
-	gcc $(FLAGS) -o $@ -c $<
+.c.o:
+	@gcc -c $(CFLAGS) -I $(INCLUDE) $(SRC) $<
 
+.PHONY: clean
 clean:
-	make -C ./libft/ clean
-	rm -f *.o
+	@echo cleaned
+	@/bin/rm -f $(OBJECTS)
 
+.PHONY: fclean
 fclean: clean
-	make -C ./libft/ fclean
-	rm -f $(NAME)
+	@echo fcleaned
+	@/bin/rm -f $(NAME)
 
+.PHONY: re
 re: fclean all

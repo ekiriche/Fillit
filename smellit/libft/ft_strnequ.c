@@ -1,38 +1,21 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strnequ.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/21 10:33:56 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/03 11:40:40 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/08 15:06:40 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
+#include "libft.h"
 
-int					main(int argc, char **argv)
+int		ft_strnequ(char const *s1, char const *s2, size_t n)
 {
-	int		fd;
-	t_list	*lul;
-	t_map	*keen;
-
-	if (argc != 2)
-	{
-		write(1, "usage: fillit source_file\n", 26);
-		return (0);
-	}
-	if (!check_back(argv[1]))
-		print_error();
-	fd = open(argv[1], O_RDONLY);
-	lul = read_tetris(fd);
-	if (lul == NULL)
-		print_error();
-	keen = ulti_ulti_solver(lul);
-	print_map(keen);
-	free_map(keen);
-	free_list(&lul);
+	if (s1 && s2)
+		if (ft_strncmp(s1, s2, n) == 0)
+			return (1);
 	return (0);
 }

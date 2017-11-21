@@ -1,38 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_power.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dpolosuk <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2017/11/16 09:59:23 by dpolosuk          #+#    #+#             */
-/*   Updated: 2017/11/21 10:33:56 by ekiriche         ###   ########.fr       */
+/*   Created: 2017/11/11 10:38:54 by dpolosuk          #+#    #+#             */
+/*   Updated: 2017/11/11 10:41:24 by dpolosuk         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft/libft.h"
-#include "fillit.h"
-
-int					main(int argc, char **argv)
+int		ft_power(int nb, int power)
 {
-	int		fd;
-	t_list	*lul;
-	t_map	*keen;
+	int filler_for_power;
 
-	if (argc != 2)
-	{
-		write(1, "usage: fillit source_file\n", 26);
+	filler_for_power = nb;
+	if (power < 0)
 		return (0);
+	if (power == 0)
+		return (1);
+	while (power > 1)
+	{
+		nb = filler_for_power * nb;
+		power--;
 	}
-	if (!check_back(argv[1]))
-		print_error();
-	fd = open(argv[1], O_RDONLY);
-	lul = read_tetris(fd);
-	if (lul == NULL)
-		print_error();
-	keen = ulti_ulti_solver(lul);
-	print_map(keen);
-	free_map(keen);
-	free_list(&lul);
-	return (0);
+	return (nb);
 }

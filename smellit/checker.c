@@ -6,11 +6,12 @@
 /*   By: ekiriche <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2017/11/14 15:25:03 by ekiriche          #+#    #+#             */
-/*   Updated: 2017/11/14 15:50:54 by ekiriche         ###   ########.fr       */
+/*   Updated: 2017/11/21 10:32:56 by ekiriche         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fillit.h"
+#include "libft/libft.h"
 
 void	print_error(void)
 {
@@ -27,6 +28,8 @@ int		check_smth(char *str)
 	i = 0;
 	count_dots = 0;
 	count_cell = 0;
+	if (str[i] == '\n')
+		return (0);
 	while (str[i])
 	{
 		if (str[i] == '.')
@@ -35,7 +38,7 @@ int		check_smth(char *str)
 			count_cell++;
 		i++;
 	}
-	if (count_dots == 12 && count_cell == 4 && i == 20)
+	if (count_dots == 12 && count_cell == 4 && i >= 20)
 		return (1);
 	return (0);
 }
@@ -63,6 +66,25 @@ int		check_form(char *str)
 		i++;
 	}
 	if (bounds == 6 || bounds == 8)
+		return (1);
+	return (0);
+}
+
+int		check_back(char *str)
+{
+	char	*buff;
+	int		fd;
+	int		ret;
+	int		i;
+
+	i = 0;
+	buff = ft_strnew(4096);
+	fd = open(str, O_RDONLY);
+	ret = read(fd, buff, 4095);
+	while (buff[i] != '\0')
+		i++;
+	i -= 1;
+	if (i >= 20 && buff[i - 20] == '\n')
 		return (1);
 	return (0);
 }
