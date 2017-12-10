@@ -27,11 +27,9 @@ int		validation(t_map *elem, t_tetr *figure, int x, int y)
 {
 	int			i;
 	int			j;
-	t_point		*coords;
 
-	coords = new_point(x, y);
 	i = 0;
-	if (figure->height + coords->x > elem->size)
+	if (figure->height + x > elem->size)
 		return (0);
 	while (i < figure->height)
 	{
@@ -39,14 +37,13 @@ int		validation(t_map *elem, t_tetr *figure, int x, int y)
 		while (j < figure->width)
 		{
 			if (figure->tetr[i][j] == figure->symbol &&
-					elem->map[coords->x + i][coords->y + j] != '.')
+					elem->map[x + i][y + j] != '.')
 				return (0);
 			j++;
 		}
 		i++;
 	}
-	insert_tetr(elem, figure, coords, figure->symbol);
-	free_point(coords);
+	insert_tetr(elem, figure, new_point(x, y), figure->symbol);
 	return (1);
 }
 
@@ -67,6 +64,7 @@ void	insert_tetr(t_map *elem, t_tetr *figure, t_point *coords, char c)
 		}
 		i++;
 	}
+	free_point(coords);
 }
 
 int		ultimate_solver(t_map *legacy, t_list *supreme)
@@ -101,7 +99,7 @@ int		ultimate_solver(t_map *legacy, t_list *supreme)
 t_map	*ulti_ulti_solver(t_list *list)
 {
 	int		size;
-	t_map	*lul;
+	t_map		*lul;
 
 	size = my_sqrt(ft_lstcount(list) * 4);
 	lul = build_map(size);

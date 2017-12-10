@@ -74,18 +74,20 @@ int		check_back(char *str)
 {
 	char	*buff;
 	int		fd;
-	int		ret;
 	int		i;
 
 	i = 0;
 	buff = ft_strnew(4096);
 	fd = open(str, O_RDONLY);
-	ret = read(fd, buff, 4095);
+	read(fd, buff, 4095);
 	while (buff[i] != '\0')
 		i++;
 	i -= 1;
 	if ((i >= 20 && buff[i - 20] == '\n') || i == 19)
+	{
+		ft_memdel((void**)&buff);
 		return (1);
+	}
 	ft_memdel((void**)&buff);
 	return (0);
 }

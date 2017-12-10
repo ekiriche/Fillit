@@ -20,13 +20,13 @@ CFLAGS = -Wall -Wextra -Werror
 .PHONY: all
 all: $(NAME)
 
-$(NAME): $(OBJECTS) $(INCLUDE)
+$(NAME): $(OBJECTS)
 	@echo made
 	@ar rc $(NAME) $(OBJECTS)
 	@ranlib $(NAME)
 
 .c.o:
-	@gcc -c $(CFLAGS) -I $(INCLUDE) $(SRC) $<
+	@gcc -c $(CFLAGS) $(SRC) $<
 
 .PHONY: clean
 clean:
