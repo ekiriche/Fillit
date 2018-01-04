@@ -7,8 +7,12 @@ static char	*buff_plus_temp(char *buff, char *temp)
 	size_t	j;
 	char	*ans;
 
-	i = ft_strlen(buff);
-	j = ft_strlen(temp);
+	i = 0;
+	if (buff)
+		i = ft_strlen(buff);
+	j = 0;
+	if (temp)
+		j = ft_strlen(temp);
 	ans = (char *)malloc(sizeof(*temp) * (i + j + 1));
 	ft_memcpy(ans, buff, i);
 	ft_memcpy(ans + i, temp, j);
@@ -21,7 +25,7 @@ static int      write_in_line(char **buff, char **line, char **temp)
         int     len;
         *buff = buff_plus_temp(*buff, *temp);
         len = 0;
-        while (*buff[len] != '\n' && *buff[len])
+        while (*buff[len] && *buff[len] != '\n')
                 len++;
         if (*buff[len] == '\n')
                 *buff[len] = '\0';
