@@ -10,6 +10,7 @@ int	main(void)
 	while (get_next_line(fd, &line))
 	{
 		ft_putstr(line);
+		ft_putchar('\n');
 		ft_strdel(&line);
 	}
 	return (0);
