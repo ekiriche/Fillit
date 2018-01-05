@@ -1,6 +1,23 @@
 #include "get_next_line.h"
 #include "libft/libft.h"
 
+static int	find_endl(char *str)
+{
+	int	len;
+
+	len = 0;
+	while (str[len])
+	{
+		if (str[len] == '\n')
+			break ;
+		else
+			len++;
+	}
+	if (len == ft_strlen(str))
+		return (-1);
+	return (len);
+}
+
 static char	*buff_plus_temp(char *buff, char *temp)
 {
 	size_t	i;
@@ -20,21 +37,16 @@ static char	*buff_plus_temp(char *buff, char *temp)
 	return (ans);
 }
 
-static int      write_in_line(char *buff, char **line, char *temp)
+static int      write_in_line(char **buff, char **line, char **temp)
 {
         int     len;
-        buff = buff_plus_temp(buff, temp);
-        len = 0;
-        while (buff[len] != '\n' && buff[len])
-                len++;
-        if (buff[len] == '\n')
-                buff[len] = '\0';
-        else
-                len = -1;
-        if (len != -1)
+        
+	*buff = buff_plus_temp(*buff, *temp);
+        len = find_endl(*buff);
+	if (len != -1)
         {
-                *line = ft_strdup(buff);
-                buff = ft_strdup(buff + len + 1);
+                *line = ft_strdup(*buff);
+                *buff = ft_strdup(*buff + len + 1);
                 return (1);
         }
         return (0);
@@ -47,17 +59,17 @@ int     get_next_line(int const fd, char **line)
         int             is_okay;
         char            *temp;
         temp = ft_strnew(BUFF_SIZE);
-        if (BUFF_SIZE < 0 || fd < 0 || !line)
+        if (BUFF_SIZE < 0 || fd < 0 || !line || (ret = read(fd, temp, BUFF_SIZE)) <= 0)
                 return (-1);
         while ((ret = read(fd, temp, BUFF_SIZE)) > 0)
         {
-                is_okay = write_in_line(buff[fd], line, temp);
+                is_okay = write_in_line(&buff[fd], line, &temp);
                 free(temp);
                 if (is_okay == 1)
                         return (1);
                 temp = ft_strnew(BUFF_SIZE);
         }
-        if ((is_okay = write_in_line(buff[fd], line, temp)))
+        if ((is_okay = write_in_line(&buff[fd], line, &temp)))
                 return (1);
         else if (ft_strlen(buff[fd]) > 0)
         {
